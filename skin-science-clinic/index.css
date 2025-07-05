@@ -1,0 +1,111 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #005a71; 
+    --secondary-color: #f4f8f9;
+    --accent-color: #ff8c42;
+    --text-color: #333;
+    --white-color: #fff;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --header-height: 70px;
+}
+
+/* Universal Box Sizing & Smooth Scroll */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* Body and General Styles */
+body {
+    margin: 0;
+    padding-top: var(--header-height);
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    width: 100%;
+    overflow-x: hidden;
+}
+.container { width: 90%; max-width: 1100px; margin: 0 auto; }
+h1, h2, h3, h4 { color: var(--primary-color); margin-top: 0; }
+section { padding: 50px 0; text-align: center; }
+
+/* =================================
+   HEADER (MOBILE FIRST)
+   ================================= */
+.main-header {
+    background-color: var(--white-color);
+    height: var(--header-height);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+}
+.header-container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
+.logo { font-size: 1.2em; font-weight: bold; color: var(--primary-color); text-decoration: none; }
+.header-phone { display: flex; align-items: center; gap: 8px; background-color: var(--primary-color); color: var(--white-color); padding: 8px 12px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: background-color 0.3s ease; }
+.header-phone:hover { background-color: #004252; }
+.header-phone .phone-text { display: none; }
+
+/* =================================
+   HERO SECTION
+   ================================= */
+.hero-static-section { position: relative; background-image: linear-gradient(to right, rgba(0, 40, 50, 0.7), rgba(0, 40, 50, 0.1)), url('images/background.jpeg'); background-size: cover; background-position: center; display: flex; align-items: center; padding: 40px 0; min-height: 70vh; }
+.hero-static-section .container { display: flex; justify-content: flex-start; }
+.hero-text-box { background-color: rgba(0, 58, 77, 0.85); padding: 30px; border-radius: 12px; max-width: 580px; text-align: left; color: var(--white-color); }
+.hero-text-box .pre-title { color: var(--accent-color); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9em; margin-bottom: 10px; }
+.hero-text-box h1 { color: var(--white-color); font-size: 2.2em; line-height: 1.2; margin: 0 0 15px 0; }
+.hero-text-box .services-list { color: #e0e0e0; line-height: 1.6; margin-bottom: 20px; font-size: 0.9em; }
+.hero-text-box .guarantee { font-weight: bold; font-size: 1.1em; margin-bottom: 25px; }
+.hero-text-box .cta-button { display: inline-block; background-color: transparent; border: 2px solid var(--accent-color); color: var(--accent-color); padding: 12px 28px; transition: all 0.3s ease; text-decoration: none; font-weight: bold; border-radius: 5px; }
+.hero-text-box .cta-button:hover { background-color: var(--accent-color); color: var(--white-color); }
+
+/* =================================
+   "WHY CHOOSE US" SECTION
+   ================================= */
+.why-choose-us-section { background-color: #fff; }
+.why-choose-us-section h2 { font-size: 1.8em; margin-bottom: 40px; position: relative; display: inline-block; padding-bottom: 10px; }
+.why-choose-us-section h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background-color: var(--accent-color); }
+.features-grid { display: grid; grid-template-columns: repeat(2, calc(50% - 15px)); gap: 30px; justify-content: center; }
+.feature-item { text-align: center; }
+.icon-container { background-color: var(--secondary-color); width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.icon-container:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+.icon-container svg { width: 55px; height: 55px; stroke: var(--primary-color); }
+.feature-item p { font-size: 1em; line-height: 1.5; color: var(--text-color); max-width: 200px; margin: 0 auto; }
+
+/* =================================
+   ABOUT SECTION
+   ================================= */
+.about-section { background-color: var(--secondary-color); }
+.profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.credentials { color: #666; font-style: italic; margin-top: -15px; }
+.about-text { max-width: 700px; margin: 20px auto 0; line-height: 1.6; }
+
+
+
+/* =================================
+   FOOTER & STICKY BAR
+   ================================= */
+footer { background-color: var(--primary-color); color: var(--white-color); padding: 20px 0; }
+.sticky-cta-bar { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--primary-color); color: var(--white-color); text-align: center; padding: 15px 0; font-size: 1.1em; font-weight: bold; text-decoration: none; z-index: 998; text-transform: uppercase; letter-spacing: 1px; }
+
+/* =================================
+   DESKTOP RESPONSIVE STYLES
+   ================================= */
+@media (min-width: 768px) {
+    .logo { font-size: 1.4em; }
+    .header-phone .phone-text { display: inline; }
+    .header-phone { padding: 8px 16px; }
+    
+    .hero-text-box h1 { font-size: 2.8em; }
+    .hero-text-box .services-list { font-size: .95em; }
+    .hero-text-box .guarantee { font-size: 1.2em; }
+    
+    .features-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .why-choose-us-section h2 { font-size: 2.2em; }
+    
+    .profile-pic { width: 180px; height: 180px; }
+}
+
+/* =================================
+   MOBILE RESPONSIVE STYLES (Overrides)
+   ================================= */
+@media (max-width: 768px) {
+    body { padding-bottom: 50px; }
+    .sticky-cta-bar { display: block; }
+}
