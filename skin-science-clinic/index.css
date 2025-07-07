@@ -9,103 +9,412 @@
     --header-height: 70px;
 }
 
-/* Universal Box Sizing & Smooth Scroll */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-/* Body and General Styles */
-body {
-    margin: 0;
-    padding-top: var(--header-height);
-    font-family: var(--font-family);
-    color: var(--text-color);
-    background-color: var(--secondary-color);
+/* =========================================================
+   THE DEFINITIVE FIX FOR HORIZONTAL SCROLLING
+   ========================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+html, body {
     width: 100%;
     overflow-x: hidden;
 }
+
+/* --- General Styles --- */
+html { scroll-behavior: smooth; }
+body { margin: 0; padding-top: var(--header-height); font-family: var(--font-family); color: var(--text-color); background-color: var(--secondary-color); }
 .container { width: 90%; max-width: 1100px; margin: 0 auto; }
-h1, h2, h3, h4 { color: var(--primary-color); margin-top: 0; }
+h2 { font-size: 1.8em; margin-bottom: 40px; }
 section { padding: 50px 0; text-align: center; }
+img { max-width: 100%; height: auto; display: block; } /* Prevents images from causing overflow */
 
 /* =================================
-   HEADER (MOBILE FIRST)
+   HEADER
    ================================= */
-.main-header {
-    background-color: var(--white-color);
-    height: var(--header-height);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-}
+.main-header { background-color: var(--white-color); height: var(--header-height); box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
 .header-container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
 .logo { font-size: 1.2em; font-weight: bold; color: var(--primary-color); text-decoration: none; }
-.header-phone { display: flex; align-items: center; gap: 8px; background-color: var(--primary-color); color: var(--white-color); padding: 8px 12px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: background-color 0.3s ease; }
-.header-phone:hover { background-color: #004252; }
+.header-phone { display: flex; align-items: center; gap: 8px; background-color: var(--primary-color); color: var(--white-color); padding: 8px 12px; border-radius: 25px; text-decoration: none; font-weight: bold; }
 .header-phone .phone-text { display: none; }
 
 /* =================================
+   HERO & ALL OTHER SECTIONS
+   ================================= */
+/* =================================
    HERO SECTION
    ================================= */
-.hero-static-section { position: relative; background-image: linear-gradient(to right, rgba(0, 40, 50, 0.7), rgba(0, 40, 50, 0.1)), url('images/background.jpeg'); background-size: cover; background-position: center; display: flex; align-items: center; padding: 40px 0; min-height: 70vh; }
-.hero-static-section .container { display: flex; justify-content: flex-start; }
-.hero-text-box { background-color: rgba(0, 58, 77, 0.85); padding: 30px; border-radius: 12px; max-width: 580px; text-align: left; color: var(--white-color); }
-.hero-text-box .pre-title { color: var(--accent-color); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9em; margin-bottom: 10px; }
-.hero-text-box h1 { color: var(--white-color); font-size: 2.2em; line-height: 1.2; margin: 0 0 15px 0; }
-.hero-text-box .services-list { color: #e0e0e0; line-height: 1.6; margin-bottom: 20px; font-size: 0.9em; }
-.hero-text-box .guarantee { font-weight: bold; font-size: 1.1em; margin-bottom: 25px; }
-.hero-text-box .cta-button { display: inline-block; background-color: transparent; border: 2px solid var(--accent-color); color: var(--accent-color); padding: 12px 28px; transition: all 0.3s ease; text-decoration: none; font-weight: bold; border-radius: 5px; }
-.hero-text-box .cta-button:hover { background-color: var(--accent-color); color: var(--white-color); }
+.hero-static-section {
+    position: relative;
+    
+    /* RESTORED: The darker, more effective background gradient */
+    background-image: linear-gradient(to right, rgba(0, 58, 77, 0.8), rgba(0, 40, 50, 0.2)), url('images/background.jpeg');
+    
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+    min-height: 70vh; /* You can adjust this height if you like */
+}
 
-/* =================================
-   "WHY CHOOSE US" SECTION
-   ================================= */
+.hero-static-section .container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.hero-text-box {
+    background-color: rgba(0, 58, 77, 0.85);
+    padding: 35px 40px;
+    border-radius: 12px;
+    max-width: 580px;
+    text-align: left;
+    color: var(--white-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+}
+
+.hero-text-box .pre-title {
+    color: var(--accent-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.hero-text-box h1 {
+    color: var(--white-color);
+    font-size: 2.2em; /* Mobile font size */
+    line-height: 1.2;
+    margin: 0 0 15px 0;
+}
+
+.hero-text-box .services-list {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 25px; /* Added more space before button */
+    font-size: 0.9em;
+}
+
+/* === THE NEW, IMPROVED BUTTON STYLE === */
+.hero-text-box .cta-button {
+    display: inline-block;
+    
+    /* This creates the outline effect */
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    
+    padding: 12px 28px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* On hover, the button fills in */
+.hero-text-box .cta-button:hover {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+}
+/* Why Choose Us */
 .why-choose-us-section { background-color: #fff; }
-.why-choose-us-section h2 { font-size: 1.8em; margin-bottom: 40px; position: relative; display: inline-block; padding-bottom: 10px; }
-.why-choose-us-section h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background-color: var(--accent-color); }
-.features-grid { display: grid; grid-template-columns: repeat(2, calc(50% - 15px)); gap: 30px; justify-content: center; }
-.feature-item { text-align: center; }
-.icon-container { background-color: var(--secondary-color); width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-.icon-container:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-.icon-container svg { width: 55px; height: 55px; stroke: var(--primary-color); }
-.feature-item p { font-size: 1em; line-height: 1.5; color: var(--text-color); max-width: 200px; margin: 0 auto; }
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.icon-container { background-color: var(--secondary-color); width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; }
+.icon-container svg { width: 45px; height: 45px; stroke: var(--primary-color); }
 
 /* =================================
-   ABOUT SECTION
+   ABOUT SECTION (NEW & IMPROVED)
    ================================= */
-.about-section { background-color: var(--secondary-color); }
-.profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-.credentials { color: #666; font-style: italic; margin-top: -15px; }
-.about-text { max-width: 700px; margin: 20px auto 0; line-height: 1.6; }
+.about-section {
+    background-color: var(--secondary-color);
+}
+
+.about-grid {
+    display: grid;
+    /* One column on mobile by default */
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: center; /* Vertically align items in the grid */
+    text-align: center; /* Center everything on mobile */
+}
+
+.profile-pic {
+    width: 350px;  /* A good, prominent size for mobile */
+    height: 350px;
+    border-radius: 0%; /* A circle looks more friendly and professional */
+    object-fit: cover;
+    border: 6px solid #fff;
+    box-shadow: 0 10px 30px rgba(0, 90, 113, 0.15);
+    margin: 0 auto; /* Ensures centering within its column */
+}
+
+.about-content h2 {
+    font-size: 1.8em;
+    margin-bottom: 5px; /* Less space between the main title and name */
+}
+.about-content h3 {
+    font-size: 1.5em;
+    font-weight: 400; /* Lighter font weight for the name */
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.credentials {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+.about-text {
+    line-height: 1.7; /* Increased line height for better readability */
+    color: #555;
+    text-align: left; /* Left-align the main paragraph for easier reading */
+}
+
+/* Services */
+.services-section { background-color: #fff; }
+.service-cards { display: grid; grid-template-columns: 1fr; gap: 30px; }
+.card { background-color: #fff; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,90,113,0.1); overflow: hidden; max-width: 400px; margin: 0 auto; }
+.card img { width: 100%; height: 220px; object-fit: cover; }
+.card-content { padding: 25px; }
+
+/* =================================
+   APPOINTMENT & CONTACT SECTIONS
+   ================================= */
+
+/* --- APPOINTMENT FORM --- */
+.appointment-form-section {
+    background-color: var(--secondary-color); /* Use the light gray background */
+}
+
+.appointment-form-section h2 {
+    color: var(--primary-color);
+}
+
+#interactive-form-container {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: var(--white-color);
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 90, 113, 0.1);
+}
+
+#show-form-btn {
+    width: 100%;
+    padding: 18px 30px;
+    font-size: 1.3em;
+    font-weight: bold;
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#show-form-btn:hover {
+    background-color: #e57228;
+}
+
+/* This simple class still just hides things */
+.hidden {
+    display: none;
+}
+
+/* Styles for the form itself */
+#contact-form {
+    text-align: left;
+}
+.form-subheading {
+    text-align: center;
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.form-group input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.4); /* Orange glow on focus */
+}
+
+.form-submit-button {
+    width: 100%;
+    padding: 18px;
+    font-size: 1.3em;
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Success Message Styling */
+#success-message {
+    text-align: center;
+    padding: 30px 20px;
+}
+#success-message h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+#success-message p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
 
 
+/* --- CONTACT SECTION (MAP) --- */
+.contact-section { background-color: #fff; }
+.map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Contact Hub Section */
+.contact-section { background-color: var(--secondary-color); }
+.contact-section .section-subheading { color: #666; max-width: 550px; margin: -20px auto 50px; }
+.contact-card-container { display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 50px; }
+.contact-card { background-color: #fff; padding: 30px 25px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,90,113,0.08); border-top: 4px solid var(--primary-color); }
+.contact-icon { font-size: 2.5em; margin-bottom: 15px; }
+.contact-card p { min-height: 50px; }
+.contact-link { display: inline-block; font-weight: bold; color: var(--primary-color); text-decoration: none; background-color: var(--secondary-color); padding: 10px 20px; border-radius: 20px; }
+.map-container { width: 100%; height: 400px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.map-container iframe { width: 100%; height: 100%; border: 0; }
 
 /* =================================
    FOOTER & STICKY BAR
    ================================= */
-footer { background-color: var(--primary-color); color: var(--white-color); padding: 20px 0; }
-.sticky-cta-bar { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--primary-color); color: var(--white-color); text-align: center; padding: 15px 0; font-size: 1.1em; font-weight: bold; text-decoration: none; z-index: 998; text-transform: uppercase; letter-spacing: 1px; }
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color); /* A lighter text color for better contrast on blue */
+    padding: 30px 0;
+    
+    /* On mobile, we want the text centered by default */
+    text-align: center;
+}
 
-/* =================================
-   DESKTOP RESPONSIVE STYLES
-   ================================= */
-@media (min-width: 768px) {
-    .logo { font-size: 1.4em; }
-    .header-phone .phone-text { display: inline; }
-    .header-phone { padding: 8px 16px; }
-    
-    .hero-text-box h1 { font-size: 2.8em; }
-    .hero-text-box .services-list { font-size: .95em; }
-    .hero-text-box .guarantee { font-size: 1.2em; }
-    
-    .features-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .why-choose-us-section h2 { font-size: 2.2em; }
-    
-    .profile-pic { width: 180px; height: 180px; }
+/* On mobile, the paragraphs stack nicely */
+footer p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+footer a {
+    color: var(--accent-color);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+footer a:hover {
+    color: var(--white-color); /* Brighter on hover */
+    text-decoration: underline;
 }
 
 /* =================================
-   MOBILE RESPONSIVE STYLES (Overrides)
+   STICKY FOOTER & CTA BAR
    ================================= */
-@media (max-width: 768px) {
-    body { padding-bottom: 50px; }
-    .sticky-cta-bar { display: block; }
+.sticky-cta-bar {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 998;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+/* =================================
+   FINAL RESPONSIVE STYLES
+   ================================= */
+
+/* Desktop View */
+@media (min-width: 768px) {
+
+    .header-phone .phone-text { display: inline; }
+    .features-grid { grid-template-columns: repeat(4, 1fr); }
+    
+    .service-cards { grid-template-columns: repeat(3, 1fr); }
+    .contact-card-container { grid-template-columns: repeat(3, 1fr); }
+       .about-grid {
+        /* On desktop, create a 2-column grid */
+        /* The image column takes up 1 part of the space, text takes 2 parts */
+        grid-template-columns: 1fr 2fr;
+        gap: 50px;
+        text-align: left; /* Left-align text on desktop */
+    }
+
+    .profile-pic {
+        width: 250px; /* Make the image even larger on desktop */
+        height: 250px;
+    }
+
+    .about-content h2 {
+        font-size: 2.2em; /* Larger title on desktop */
+    }
+
+      footer .container {
+        /* This turns the container into a flexbox */
+        display: flex;
+
+        /* This centers the items horizontally with space between them */
+        justify-content: center;
+
+        /* This aligns them vertically if they wrap to a new line */
+        align-items: center;
+
+        /* Adds space between the "Copyright" and "Instagram" text */
+        gap: 30px; 
+    }
+}
+
+/* =================================
+   MOBILE VIEW OVERRIDES (max-width: 767px)
+   ================================= */
+@media (max-width: 767px) {
+    body {
+        /* Adds space at the bottom so the bar doesn't cover the footer */
+        padding-bottom: 55px;
+    }
+    
+    .sticky-cta-bar {
+        /* This is the ONLY place where the bar is told to be visible */
+        display: block; 
+    }
 }
